@@ -11,7 +11,7 @@ import (
 
 func NewBot(token string) (*Bot, error) {
 	var u User
-	b := Bot{
+	b := &Bot{
 		Token:    token,
 		Handlers: make(map[string]func(*Bot, *Update, []string)),
 	}
@@ -33,7 +33,7 @@ func NewBot(token string) (*Bot, error) {
 
 	b.Username = u.Username
 
-	return &b, err
+	return b, err
 }
 
 func callAPI(bot *Bot, method string, body io.Reader) (resp *http.Response, err error) {
