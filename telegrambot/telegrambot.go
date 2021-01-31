@@ -19,7 +19,7 @@ func NewBot(token string) (*Bot, error) {
 	r, err := b.GetMe()
 
 	if err != nil {
-		return nil, error
+		return nil, err
 	}
 
 	defer r.Body.Close()
@@ -50,7 +50,7 @@ func (bot *Bot) SendMessage(body io.Reader) {
 	defer resp.Body.Close()
 }
 
-func GetMe(bot *Bot) (resp *http.Response, err error) {
+func (bot *Bot) GetMe() (resp *http.Response, err error) {
 	URL_PATTERN := fmt.Sprintf("https://api.telegram.org/bot%s/%s", bot.Token, "getMe")
 	return http.Get(URL_PATTERN)
 }
