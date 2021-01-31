@@ -31,6 +31,7 @@ func NewBot(token string) (*Bot, error) {
 	}
 
 	b.Username = getMeResponse.User.Username
+	fmt.Printf("%v\n", getMeResponse.User)
 
 	return b, err
 }
