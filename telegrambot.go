@@ -57,7 +57,7 @@ func (bot *Bot) GetMe() (resp *http.Response, err error) {
 
 func (bot *Bot) AddHandler(s string, f func(*Bot, *Update, []string)) {
 	bot.Handlers[s] = f
-	ss := fmt.Sprintf("%s%s", s, bot.Username)
+	ss := fmt.Sprintf("%s@%s", s, bot.Username)
 	bot.Handlers[ss] = f
 }
 
