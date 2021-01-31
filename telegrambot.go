@@ -8,53 +8,36 @@ import (
 	"strings"
 )
 
-type Bot struct {
-	Token    string
-	Username string
-	Handlers map[string]func(*Bot, *Update, []string)
-}
-
-func NewBot(token string, username string) Bot {
-	return Bot{
+func NewBot(token string) (Bot, error) {
+	var u User
+	b := Bot{
 		Token:    token,
-		Username: username,
 		Handlers: make(map[string]func(*Bot, *Update, []string)),
 	}
-}
 
-type Update struct {
-	UpdateID          int64   `json:"update_id"`
-	Message           Message `json:"message,omitempty"`
-	EditedMessage     Message `json:"edited_message,omitempty"`
-	ChannelPost       Message `json:"channel_post,omitempty"`
-	EditedChannelPost Message `json:"edited_channel_post,omitempty"`
-}
+	r, err := b.GetMe()
 
-type User struct {
-	ID        int64 `json:id`
-	FirstName int64 `json:first_name`
-}
+	if err != nil {
+		return nil, error
+	}
 
-type Message struct {
-	MessageID      int64  `json:"message_id"`
-	Text           string `json:"text"`
-	Chat           `json:"chat"`
-	ReplyToMessage *Message `json:"reply_to_message,omitempty"`
-	From           User     `json:"from"`
-}
+	defer r.Body.Close()
 
-type Chat struct {
-	Id int64 `json:"id"`
-}
+	err = json.NewDecoder(r.Body).Decode(&u)
 
-type Response struct {
-	ChatId int64  `json:"chat_id"`
-	Text   string `json:"text"`
+	if err != nil {
+
+		return nil, err
+	}
+
+	b.Username = u.Username
+
+	return b, err
 }
 
 func callAPI(bot *Bot, method string, body io.Reader) (resp *http.Response, err error) {
-	URL_PATTERN := "https://api.telegram.org/bot%s/%s"
-	return http.Post(fmt.Sprintf(URL_PATTERN, bot.Token, method), "application/json", body)
+	URL_PATTERN := fmt.Sprintf("https://api.telegram.org/bot%s/%s", bot.Token, method)
+	return http.Post(URL_PATTERN, "application/json", body)
 }
 
 func (bot *Bot) SendMessage(body io.Reader) {
@@ -64,6 +47,11 @@ func (bot *Bot) SendMessage(body io.Reader) {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
+}
+
+func GetMe(bot *Bot) (resp *http.Response, err error) {
+	URL_PATTERN := fmt.Sprintf("https://api.telegram.org/bot%s/%s", bot.Token, "getMe")
+	return http.Get(URL_PATTERN)
 }
 
 func (bot *Bot) AddHandler(s string, f func(*Bot, *Update, []string)) {
