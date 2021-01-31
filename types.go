@@ -41,3 +41,7 @@ type Response struct {
 	ChatId int64  `json:"chat_id"`
 	Text   string `json:"text"`
 }
+
+type GetMeResponse struct {
+	User User `json:"result"`
+}

@@ -10,7 +10,7 @@ import (
 )
 
 func NewBot(token string) (*Bot, error) {
-	var u User
+	var getMeResponse GetMeResponse
 	b := &Bot{
 		Token:    token,
 		Handlers: make(map[string]func(*Bot, *Update, []string)),
@@ -21,17 +21,16 @@ func NewBot(token string) (*Bot, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	defer r.Body.Close()
 
-	err = json.NewDecoder(r.Body).Decode(&u)
+	err = json.NewDecoder(r.Body).Decode(&getMeResponse)
 
 	if err != nil {
 
 		return nil, err
 	}
 
-	b.Username = u.Username
+	b.Username = getMeResponse.User.Username
 
 	return b, err
 }
