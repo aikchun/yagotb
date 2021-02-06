@@ -1,3 +1,3 @@
-module github.com/aikchun/yagotb
+module github.com/AikChun/yagotb
 
 go 1.15
