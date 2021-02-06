@@ -2,6 +2,7 @@ package telegrambot
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -17,16 +18,20 @@ func NewBot(token string) (*Bot, error) {
 	}
 
 	r, err := b.GetMe()
+	defer r.Body.Close()
 
 	if err != nil {
 		return nil, err
 	}
-	defer r.Body.Close()
 
 	err = json.NewDecoder(r.Body).Decode(&getMeResponse)
 
 	if err != nil {
+		return nil, err
+	}
 
+	if getMeResponse.User.Username == "" {
+		err := errors.New("This token is invalid.")
 		return nil, err
 	}
 
