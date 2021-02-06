@@ -2,7 +2,7 @@ package telegrambot_test
 
 import (
 	"fmt"
-	"github.com/aikchun/yagotb"
+	"github.com/AikChun/yagotb"
 	"testing"
 )
 
