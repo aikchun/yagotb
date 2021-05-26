@@ -35,7 +35,7 @@ type Message struct {
 	Chat           Chat      `json:"chat"`
 	ReplyToMessage *Message  `json:"reply_to_message,omitempty"`
 	From           User      `json:"from"`
-	Date           time.Time `json:date`
+	Date           time.Time `json:"date"`
 }
 
 type Chat struct {
