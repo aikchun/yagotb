@@ -1,9 +1,5 @@
 package telegrambot
 
-import (
-	"time"
-)
-
 type Bot struct {
 	Token    string
 	Username string
@@ -30,12 +26,12 @@ type User struct {
 }
 
 type Message struct {
-	MessageID      int64     `json:"message_id"`
-	Text           string    `json:"text"`
-	Chat           Chat      `json:"chat"`
-	ReplyToMessage *Message  `json:"reply_to_message,omitempty"`
-	From           User      `json:"from"`
-	Date           time.Time `json:"date"`
+	MessageID      int64    `json:"message_id"`
+	Text           string   `json:"text"`
+	Chat           Chat     `json:"chat"`
+	ReplyToMessage *Message `json:"reply_to_message,omitempty"`
+	From           User     `json:"from"`
+	Date           int64    `json:"date"`
 }
 
 type Chat struct {
