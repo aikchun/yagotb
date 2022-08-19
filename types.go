@@ -65,3 +65,12 @@ type AnswerCallbackQueryPayload struct {
 	Url             string `json:"url,omitempty"`
 	CacheTime       int    `json:"cache_time,omitempty"`
 }
+
+type EditMessageTextPayload struct {
+	ChatId          string                `json:"chat_id,omitempty"`
+	MessageId       int64                 `json:"message_id,omitempty"`
+	InlineMessageId string                `json:"inline_message_id,omitempty"`
+	Text            string                `json:"text,omitempty"`
+	ParseMode       string                `json:"parse_mode,omitempty"`
+	ReplyMarkup     *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
