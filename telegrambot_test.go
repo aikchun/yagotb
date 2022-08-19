@@ -2,8 +2,9 @@ package telegrambot_test
 
 import (
 	"fmt"
-	"github.com/AikChun/yagotb"
 	"testing"
+
+	telegrambot "github.com/aikchun/yagotb"
 )
 
 func TestNewBot(t *testing.T) {
