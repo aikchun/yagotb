@@ -1,11 +1,11 @@
 package telegrambot
 
 type SendMessagePayload struct {
-	ChatId           int64                `json:"chat_id"`
-	Text             string               `json:"text"`
-	ReplyToMessageID int64                `json:"reply_to_message_id,omitempty"`
-	ParseMode        string               `json:"parse_mode,omitempty"`
-	ReplyMarkup      InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	ChatId           int64                 `json:"chat_id"`
+	Text             string                `json:"text"`
+	ReplyToMessageID int64                 `json:"reply_to_message_id,omitempty"`
+	ParseMode        string                `json:"parse_mode,omitempty"`
+	ReplyMarkup      *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 }
 
 type InlineKeyboardMarkup struct {
