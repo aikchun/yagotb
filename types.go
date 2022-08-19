@@ -7,12 +7,12 @@ type Bot struct {
 }
 
 type Update struct {
-	UpdateID          int64         `json:"update_id"`
-	Message           Message       `json:"message,omitempty"`
-	EditedMessage     Message       `json:"edited_message,omitempty"`
-	ChannelPost       Message       `json:"channel_post,omitempty"`
-	EditedChannelPost Message       `json:"edited_channel_post,omitempty"`
-	CallbackQuery     CallbackQuery `json:"callback_query,omitempty"`
+	UpdateID          int64          `json:"update_id"`
+	Message           Message        `json:"message,omitempty"`
+	EditedMessage     Message        `json:"edited_message,omitempty"`
+	ChannelPost       Message        `json:"channel_post,omitempty"`
+	EditedChannelPost Message        `json:"edited_channel_post,omitempty"`
+	CallbackQuery     *CallbackQuery `json:"callback_query,omitempty"`
 }
 
 type User struct {
@@ -49,13 +49,13 @@ type GetMeResponse struct {
 }
 
 type CallbackQuery struct {
-	ID              string  `json:"id"`
-	From            User    `json:"from"`
-	Message         Message `json:"message,omitempty"`
-	InlineMessageID Message `json:"inline_message_id,omitempty"`
-	ChatInstance    string  `json:"chat_instance"`
-	Data            string  `json:"data,omitempty"`
-	GameShortName   string  `json:"game_short_name,omitempty"`
+	ID              string   `json:"id"`
+	From            User     `json:"from"`
+	Message         *Message `json:"message,omitempty"`
+	InlineMessageID string   `json:"inline_message_id,omitempty"`
+	ChatInstance    string   `json:"chat_instance"`
+	Data            string   `json:"data,omitempty"`
+	GameShortName   string   `json:"game_short_name,omitempty"`
 }
 
 type AnswerCallbackQueryPayload struct {
