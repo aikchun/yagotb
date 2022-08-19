@@ -7,11 +7,12 @@ type Bot struct {
 }
 
 type Update struct {
-	UpdateID          int64   `json:"update_id"`
-	Message           Message `json:"message,omitempty"`
-	EditedMessage     Message `json:"edited_message,omitempty"`
-	ChannelPost       Message `json:"channel_post,omitempty"`
-	EditedChannelPost Message `json:"edited_channel_post,omitempty"`
+	UpdateID          int64         `json:"update_id"`
+	Message           Message       `json:"message,omitempty"`
+	EditedMessage     Message       `json:"edited_message,omitempty"`
+	ChannelPost       Message       `json:"channel_post,omitempty"`
+	EditedChannelPost Message       `json:"edited_channel_post,omitempty"`
+	CallbackQuery     CallbackQuery `json:"callback_query,omitempty"`
 }
 
 type User struct {
@@ -45,4 +46,22 @@ type Response struct {
 
 type GetMeResponse struct {
 	User User `json:"result"`
+}
+
+type CallbackQuery struct {
+	ID              string  `json:"id"`
+	From            User    `json:"from"`
+	Message         Message `json:"message,omitempty"`
+	InlineMessageID Message `json:"inline_message_id,omitempty"`
+	ChatInstance    string  `json:"chat_instance"`
+	Data            string  `json:"data,omitempty"`
+	GameShortName   string  `json:"game_short_name,omitempty"`
+}
+
+type AnswerCallbackQueryPayload struct {
+	CallbackQueryId string `json:"callback_query_id"`
+	Text            string `json:"text,omitempty"`
+	ShowAlert       bool   `json:"show_alert,omitempty"`
+	Url             string `json:"url,omitempty"`
+	CacheTime       int    `json:"cache_time,omitempty"`
 }
