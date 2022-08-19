@@ -78,3 +78,11 @@ func (bot *Bot) HandleUpdate(u *Update) {
 	}
 
 }
+
+func (bot *Bot) AnswerCallbackQuery(body io.Reader) {
+	resp, err := callAPI(bot, "answerCallbackQuery", body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+}
