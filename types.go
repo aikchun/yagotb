@@ -36,11 +36,11 @@ type Message struct {
 }
 
 type Chat struct {
-	Id int64 `json:"id"`
+	ID int64 `json:"id"`
 }
 
 type Response struct {
-	ChatId int64  `json:"chat_id"`
+	ChatID int64  `json:"chat_id"`
 	Text   string `json:"text"`
 }
 
@@ -59,7 +59,7 @@ type CallbackQuery struct {
 }
 
 type AnswerCallbackQueryPayload struct {
-	CallbackQueryId string `json:"callback_query_id"`
+	CallbackQueryID string `json:"callback_query_id"`
 	Text            string `json:"text,omitempty"`
 	ShowAlert       bool   `json:"show_alert,omitempty"`
 	Url             string `json:"url,omitempty"`
@@ -67,9 +67,9 @@ type AnswerCallbackQueryPayload struct {
 }
 
 type EditMessageTextPayload struct {
-	ChatId          string                `json:"chat_id,omitempty"`
-	MessageId       int64                 `json:"message_id,omitempty"`
-	InlineMessageId string                `json:"inline_message_id,omitempty"`
+	ChatID          string                `json:"chat_id,omitempty"`
+	MessageID       int64                 `json:"message_id,omitempty"`
+	InlineMessageID string                `json:"inline_message_id,omitempty"`
 	Text            string                `json:"text,omitempty"`
 	ParseMode       string                `json:"parse_mode,omitempty"`
 	ReplyMarkup     *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
