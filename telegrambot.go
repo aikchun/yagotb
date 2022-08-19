@@ -86,3 +86,11 @@ func (bot *Bot) AnswerCallbackQuery(body io.Reader) {
 	}
 	defer resp.Body.Close()
 }
+
+func (bot *Bot) EditMessageText(body io.Reader) {
+	resp, err := callAPI(bot, "editMessageText", body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+}
